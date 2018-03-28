@@ -1,4 +1,4 @@
-// Copyright 2015 The btcsuite developers
+// Copyright 2015 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -17,7 +17,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/btcsuite/btcd/btcec"
+	"github.com/grhsuite/grhd/grhec"
 )
 
 func main() {
@@ -28,7 +28,7 @@ func main() {
 	defer fi.Close()
 
 	// Compress the serialized byte points.
-	serialized := btcec.S256().SerializedBytePoints()
+	serialized := grhec.S256().SerializedBytePoints()
 	var compressed bytes.Buffer
 	w := zlib.NewWriter(&compressed)
 	if _, err := w.Write(serialized); err != nil {
@@ -41,18 +41,18 @@ func main() {
 	encoded := make([]byte, base64.StdEncoding.EncodedLen(compressed.Len()))
 	base64.StdEncoding.Encode(encoded, compressed.Bytes())
 
-	fmt.Fprintln(fi, "// Copyright (c) 2015 The btcsuite developers")
+	fmt.Fprintln(fi, "// Copyright (c) 2015 The grhsuite developers")
 	fmt.Fprintln(fi, "// Use of this source code is governed by an ISC")
 	fmt.Fprintln(fi, "// license that can be found in the LICENSE file.")
 	fmt.Fprintln(fi)
-	fmt.Fprintln(fi, "package btcec")
+	fmt.Fprintln(fi, "package grhec")
 	fmt.Fprintln(fi)
 	fmt.Fprintln(fi, "// Auto-generated file (see genprecomps.go)")
 	fmt.Fprintln(fi, "// DO NOT EDIT")
 	fmt.Fprintln(fi)
 	fmt.Fprintf(fi, "var secp256k1BytePoints = %q\n", string(encoded))
 
-	a1, b1, a2, b2 := btcec.S256().EndomorphismVectors()
+	a1, b1, a2, b2 := grhec.S256().EndomorphismVectors()
 	fmt.Println("The following values are the computed linearly " +
 		"independent vectors needed to make use of the secp256k1 " +
 		"endomorphism:")

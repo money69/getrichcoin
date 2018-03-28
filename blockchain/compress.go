@@ -1,12 +1,12 @@
-// Copyright (c) 2015-2016 The btcsuite developers
+// Copyright (c) 2015-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 package blockchain
 
 import (
-	"github.com/btcsuite/btcd/btcec"
-	"github.com/btcsuite/btcd/txscript"
+	"github.com/grhsuite/grhd/grhec"
+	"github.com/grhsuite/grhd/txscript"
 )
 
 // -----------------------------------------------------------------------------
@@ -109,7 +109,7 @@ func deserializeVLQ(serialized []byte) (uint64, int) {
 // In order to reduce the size of stored scripts, a domain specific compression
 // algorithm is used which recognizes standard scripts and stores them using
 // less bytes than the original script.  The compression algorithm used here was
-// obtained from Bitcoin Core, so all credits for the algorithm go to it.
+// obtained from GetRichCoin Core, so all credits for the algorithm go to it.
 //
 // The general serialized format is:
 //
@@ -218,7 +218,7 @@ func isPubKey(script []byte) (bool, []byte) {
 
 		// Ensure the public key is valid.
 		serializedPubKey := script[1:34]
-		_, err := btcec.ParsePubKey(serializedPubKey, btcec.S256())
+		_, err := grhec.ParsePubKey(serializedPubKey, grhec.S256())
 		if err == nil {
 			return true, serializedPubKey
 		}
@@ -230,7 +230,7 @@ func isPubKey(script []byte) (bool, []byte) {
 
 		// Ensure the public key is valid.
 		serializedPubKey := script[1:66]
-		_, err := btcec.ParsePubKey(serializedPubKey, btcec.S256())
+		_, err := grhec.ParsePubKey(serializedPubKey, grhec.S256())
 		if err == nil {
 			return true, serializedPubKey
 		}
@@ -399,7 +399,7 @@ func decompressScript(compressedPkScript []byte, version int32) []byte {
 		compressedKey := make([]byte, 33)
 		compressedKey[0] = byte(encodedScriptSize - 2)
 		copy(compressedKey[1:], compressedPkScript[1:])
-		key, err := btcec.ParsePubKey(compressedKey, btcec.S256())
+		key, err := grhec.ParsePubKey(compressedKey, grhec.S256())
 		if err != nil {
 			return nil
 		}
@@ -424,12 +424,12 @@ func decompressScript(compressedPkScript []byte, version int32) []byte {
 // In order to reduce the size of stored amounts, a domain specific compression
 // algorithm is used which relies on there typically being a lot of zeroes at
 // end of the amounts.  The compression algorithm used here was obtained from
-// Bitcoin Core, so all credits for the algorithm go to it.
+// GetRichCoin Core, so all credits for the algorithm go to it.
 //
 // While this is simply exchanging one uint64 for another, the resulting value
 // for typical amounts has a much smaller magnitude which results in fewer bytes
 // when encoded as variable length quantity.  For example, consider the amount
-// of 0.1 BTC which is 10000000 satoshi.  Encoding 10000000 as a VLQ would take
+// of 0.1 GRH which is 10000000 satoshi.  Encoding 10000000 as a VLQ would take
 // 4 bytes while encoding the compressed value of 8 as a VLQ only takes 1 byte.
 //
 // Essentially the compression is achieved by splitting the value into an
@@ -448,14 +448,14 @@ func decompressScript(compressedPkScript []byte, version int32) []byte {
 //
 // Example encodings:
 // (The numbers in parenthesis are the number of bytes when serialized as a VLQ)
-//            0 (1) -> 0        (1)           *  0.00000000 BTC
-//         1000 (2) -> 4        (1)           *  0.00001000 BTC
-//        10000 (2) -> 5        (1)           *  0.00010000 BTC
-//     12345678 (4) -> 111111101(4)           *  0.12345678 BTC
-//     50000000 (4) -> 47       (1)           *  0.50000000 BTC
-//    100000000 (4) -> 9        (1)           *  1.00000000 BTC
-//    500000000 (5) -> 49       (1)           *  5.00000000 BTC
-//   1000000000 (5) -> 10       (1)           * 10.00000000 BTC
+//            0 (1) -> 0        (1)           *  0.00000000 GRH
+//         1000 (2) -> 4        (1)           *  0.00001000 GRH
+//        10000 (2) -> 5        (1)           *  0.00010000 GRH
+//     12345678 (4) -> 111111101(4)           *  0.12345678 GRH
+//     50000000 (4) -> 47       (1)           *  0.50000000 GRH
+//    100000000 (4) -> 9        (1)           *  1.00000000 GRH
+//    500000000 (5) -> 49       (1)           *  5.00000000 GRH
+//   1000000000 (5) -> 10       (1)           * 10.00000000 GRH
 // -----------------------------------------------------------------------------
 
 // compressTxOutAmount compresses the passed amount according to the domain

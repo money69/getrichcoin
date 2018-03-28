@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2015 The btcsuite developers
+// Copyright (c) 2013-2015 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -10,10 +10,10 @@ import (
 )
 
 // MaxAddrPerMsg is the maximum number of addresses that can be in a single
-// bitcoin addr message (MsgAddr).
+// getrichcoin addr message (MsgAddr).
 const MaxAddrPerMsg = 1000
 
-// MsgAddr implements the Message interface and represents a bitcoin
+// MsgAddr implements the Message interface and represents a getrichcoin
 // addr message.  It is used to provide a list of known active peers on the
 // network.  An active peer is considered one that has transmitted a message
 // within the last 3 hours.  Nodes which have not transmitted in that time
@@ -55,7 +55,7 @@ func (msg *MsgAddr) ClearAddresses() {
 	msg.AddrList = []*NetAddress{}
 }
 
-// BtcDecode decodes r using the bitcoin protocol encoding into the receiver.
+// BtcDecode decodes r using the getrichcoin protocol encoding into the receiver.
 // This is part of the Message interface implementation.
 func (msg *MsgAddr) BtcDecode(r io.Reader, pver uint32, enc MessageEncoding) error {
 	count, err := ReadVarInt(r, pver)
@@ -83,7 +83,7 @@ func (msg *MsgAddr) BtcDecode(r io.Reader, pver uint32, enc MessageEncoding) err
 	return nil
 }
 
-// BtcEncode encodes the receiver to w using the bitcoin protocol encoding.
+// BtcEncode encodes the receiver to w using the getrichcoin protocol encoding.
 // This is part of the Message interface implementation.
 func (msg *MsgAddr) BtcEncode(w io.Writer, pver uint32, enc MessageEncoding) error {
 	// Protocol versions before MultipleAddressVersion only allowed 1 address
@@ -134,7 +134,7 @@ func (msg *MsgAddr) MaxPayloadLength(pver uint32) uint32 {
 	return MaxVarIntPayload + (MaxAddrPerMsg * maxNetAddressPayload(pver))
 }
 
-// NewMsgAddr returns a new bitcoin addr message that conforms to the
+// NewMsgAddr returns a new getrichcoin addr message that conforms to the
 // Message interface.  See MsgAddr for details.
 func NewMsgAddr() *MsgAddr {
 	return &MsgAddr{

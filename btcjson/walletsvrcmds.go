@@ -1,11 +1,11 @@
-// Copyright (c) 2014 The btcsuite developers
+// Copyright (c) 2014 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 // NOTE: This file is intended to house the RPC commands that are supported by
 // a wallet server.
 
-package btcjson
+package grhjson
 
 // AddMultisigAddressCmd defines the addmutisigaddress JSON-RPC command.
 type AddMultisigAddressCmd struct {
@@ -450,7 +450,7 @@ func NewLockUnspentCmd(unlock bool, transactions []TransactionInput) *LockUnspen
 type MoveCmd struct {
 	FromAccount string
 	ToAccount   string
-	Amount      float64 // In BTC
+	Amount      float64 // In GRH
 	MinConf     *int    `jsonrpcdefault:"1"`
 	Comment     *string
 }
@@ -474,7 +474,7 @@ func NewMoveCmd(fromAccount, toAccount string, amount float64, minConf *int, com
 type SendFromCmd struct {
 	FromAccount string
 	ToAddress   string
-	Amount      float64 // In BTC
+	Amount      float64 // In GRH
 	MinConf     *int    `jsonrpcdefault:"1"`
 	Comment     *string
 	CommentTo   *string
@@ -499,7 +499,7 @@ func NewSendFromCmd(fromAccount, toAddress string, amount float64, minConf *int,
 // SendManyCmd defines the sendmany JSON-RPC command.
 type SendManyCmd struct {
 	FromAccount string
-	Amounts     map[string]float64 `jsonrpcusage:"{\"address\":amount,...}"` // In BTC
+	Amounts     map[string]float64 `jsonrpcusage:"{\"address\":amount,...}"` // In GRH
 	MinConf     *int               `jsonrpcdefault:"1"`
 	Comment     *string
 }
@@ -557,7 +557,7 @@ func NewSetAccountCmd(address, account string) *SetAccountCmd {
 
 // SetTxFeeCmd defines the settxfee JSON-RPC command.
 type SetTxFeeCmd struct {
-	Amount float64 // In BTC
+	Amount float64 // In GRH
 }
 
 // NewSetTxFeeCmd returns a new instance which can be used to issue a settxfee

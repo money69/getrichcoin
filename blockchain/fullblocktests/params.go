@@ -1,4 +1,4 @@
-// Copyright (c) 2016 The btcsuite developers
+// Copyright (c) 2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -9,9 +9,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/wire"
+	"github.com/grhsuite/grhd/chaincfg"
+	"github.com/grhsuite/grhd/chaincfg/chainhash"
+	"github.com/grhsuite/grhd/wire"
 )
 
 // newHashFromStr converts the passed big-endian hex string into a
@@ -43,7 +43,7 @@ var (
 	// the overhead of creating it multiple times.
 	bigOne = big.NewInt(1)
 
-	// regressionPowLimit is the highest proof of work value a Bitcoin block
+	// regressionPowLimit is the highest proof of work value a GetRichCoin block
 	// can have for the regression test network.  It is the value 2^255 - 1.
 	regressionPowLimit = new(big.Int).Sub(new(big.Int).Lsh(bigOne, 255), bigOne)
 

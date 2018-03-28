@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2016 The btcsuite developers
+// Copyright (c) 2014-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -10,16 +10,16 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/btcsuite/btcd/blockchain"
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcd/database"
-	_ "github.com/btcsuite/btcd/database/ffldb"
-	"github.com/btcsuite/btcutil"
+	"github.com/grhsuite/grhd/blockchain"
+	"github.com/grhsuite/grhd/chaincfg"
+	"github.com/grhsuite/grhd/database"
+	_ "github.com/grhsuite/grhd/database/ffldb"
+	"github.com/grhsuite/grhutil"
 )
 
 // This example demonstrates how to create a new chain instance and use
 // ProcessBlock to attempt to add a block to the chain.  As the package
-// overview documentation describes, this includes all of the Bitcoin consensus
+// overview documentation describes, this includes all of the GetRichCoin consensus
 // rules.  This example intentionally attempts to insert a duplicate genesis
 // block to illustrate how an invalid block is handled.
 func ExampleBlockChain_ProcessBlock() {
@@ -39,7 +39,7 @@ func ExampleBlockChain_ProcessBlock() {
 	defer db.Close()
 
 	// Create a new BlockChain instance using the underlying database for
-	// the main bitcoin network.  This example does not demonstrate some
+	// the main getrichcoin network.  This example does not demonstrate some
 	// of the other available configuration options such as specifying a
 	// notification callback and signature cache.  Also, the caller would
 	// ordinarily keep a reference to the median time source and add time
@@ -58,7 +58,7 @@ func ExampleBlockChain_ProcessBlock() {
 	// Process a block.  For this example, we are going to intentionally
 	// cause an error by trying to process the genesis block which already
 	// exists.
-	genesisBlock := btcutil.NewBlock(chaincfg.MainNetParams.GenesisBlock)
+	genesisBlock := grhutil.NewBlock(chaincfg.MainNetParams.GenesisBlock)
 	isMainChain, isOrphan, err := chain.ProcessBlock(genesisBlock,
 		blockchain.BFNone)
 	if err != nil {

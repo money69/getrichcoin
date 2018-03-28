@@ -1,8 +1,8 @@
-// Copyright (c) 2013-2016 The btcsuite developers
+// Copyright (c) 2013-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcec
+package grhec
 
 import (
 	"bytes"
@@ -19,7 +19,7 @@ type pubKeyTest struct {
 }
 
 var pubKeyTests = []pubKeyTest{
-	// pubkey from bitcoin blockchain tx
+	// pubkey from getrichcoin blockchain tx
 	// 0437cd7f8525ceed2324359c2d0ba26006d92d85
 	{
 		name: "uncompressed ok",

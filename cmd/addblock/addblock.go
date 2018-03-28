@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2016 The btcsuite developers
+// Copyright (c) 2013-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -9,21 +9,21 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/btcsuite/btcd/blockchain"
-	"github.com/btcsuite/btcd/blockchain/indexers"
-	"github.com/btcsuite/btcd/database"
-	"github.com/btcsuite/btcd/limits"
-	"github.com/btcsuite/btclog"
+	"github.com/grhsuite/grhd/blockchain"
+	"github.com/grhsuite/grhd/blockchain/indexers"
+	"github.com/grhsuite/grhd/database"
+	"github.com/grhsuite/grhd/limits"
+	"github.com/grhsuite/grhlog"
 )
 
 const (
-	// blockDbNamePrefix is the prefix for the btcd block database.
+	// blockDbNamePrefix is the prefix for the grhd block database.
 	blockDbNamePrefix = "blocks"
 )
 
 var (
 	cfg *config
-	log btclog.Logger
+	log grhlog.Logger
 )
 
 // loadBlockDB opens the block database and returns a handle to it.
@@ -69,7 +69,7 @@ func realMain() error {
 	cfg = tcfg
 
 	// Setup logging.
-	backendLogger := btclog.NewBackend(os.Stdout)
+	backendLogger := grhlog.NewBackend(os.Stdout)
 	defer os.Stdout.Sync()
 	log = backendLogger.Logger("MAIN")
 	database.UseLogger(backendLogger.Logger("BCDB"))

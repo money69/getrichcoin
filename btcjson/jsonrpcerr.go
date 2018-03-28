@@ -1,8 +1,8 @@
-// Copyright (c) 2014 The btcsuite developers
+// Copyright (c) 2014 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcjson
+package grhjson
 
 // Standard JSON-RPC 2.0 errors.
 var (
@@ -77,7 +77,7 @@ const (
 	ErrRPCDecodeHexString   RPCErrorCode = -22
 )
 
-// Errors that are specific to btcd.
+// Errors that are specific to grhd.
 const (
 	ErrRPCNoWallet      RPCErrorCode = -1
 	ErrRPCUnimplemented RPCErrorCode = -1

@@ -10,8 +10,8 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/btcsuite/btcd/btcjson"
-	"github.com/btcsuite/go-socks/socks"
+	"github.com/grhsuite/grhd/grhjson"
+	"github.com/grhsuite/go-socks/socks"
 )
 
 // newHTTPClient returns a new HTTP client that is configured according to the
@@ -116,7 +116,7 @@ func sendPostRequest(marshalledJSON []byte, cfg *config) ([]byte, error) {
 	}
 
 	// Unmarshal the response.
-	var resp btcjson.Response
+	var resp grhjson.Response
 	if err := json.Unmarshal(respBytes, &resp); err != nil {
 		return nil, err
 	}

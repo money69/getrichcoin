@@ -1,11 +1,11 @@
-// Copyright (c) 2014-2017 The btcsuite developers
+// Copyright (c) 2014-2017 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 // NOTE: This file is intended to house the RPC commands that are supported by
 // a chain server.
 
-package btcjson
+package grhjson
 
 import (
 	"encoding/json"
@@ -54,14 +54,14 @@ type TransactionInput struct {
 // CreateRawTransactionCmd defines the createrawtransaction JSON-RPC command.
 type CreateRawTransactionCmd struct {
 	Inputs   []TransactionInput
-	Amounts  map[string]float64 `jsonrpcusage:"{\"address\":amount,...}"` // In BTC
+	Amounts  map[string]float64 `jsonrpcusage:"{\"address\":amount,...}"` // In GRH
 	LockTime *int64
 }
 
 // NewCreateRawTransactionCmd returns a new instance which can be used to issue
 // a createrawtransaction JSON-RPC command.
 //
-// Amounts are in BTC.
+// Amounts are in GRH.
 func NewCreateRawTransactionCmd(inputs []TransactionInput, amounts map[string]float64,
 	lockTime *int64) *CreateRawTransactionCmd {
 
@@ -192,7 +192,7 @@ func NewGetBlockHeaderCmd(hash string, verbose *bool) *GetBlockHeaderCmd {
 }
 
 // TemplateRequest is a request object as defined in BIP22
-// (https://en.bitcoin.it/wiki/BIP_0022), it is optionally provided as an
+// (https://en.getrichcoin.it/wiki/BIP_0022), it is optionally provided as an
 // pointer argument to GetBlockTemplateCmd.
 type TemplateRequest struct {
 	Mode         string   `json:"mode,omitempty"`
@@ -427,7 +427,7 @@ func NewGetRawMempoolCmd(verbose *bool) *GetRawMempoolCmd {
 
 // GetRawTransactionCmd defines the getrawtransaction JSON-RPC command.
 //
-// NOTE: This field is an int versus a bool to remain compatible with Bitcoin
+// NOTE: This field is an int versus a bool to remain compatible with GetRichCoin
 // Core even though it really should be a bool.
 type GetRawTransactionCmd struct {
 	Txid    string

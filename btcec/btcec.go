@@ -1,10 +1,10 @@
 // Copyright 2010 The Go Authors. All rights reserved.
 // Copyright 2011 ThePiachu. All rights reserved.
-// Copyright 2013-2014 The btcsuite developers
+// Copyright 2013-2014 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcec
+package grhec
 
 // References:
 //   [SECG]: Recommended Elliptic Curve Domain Parameters
@@ -928,8 +928,8 @@ func initS256() {
 		panic(err)
 	}
 
-	// Next 6 constants are from Hal Finney's bitcointalk.org post:
-	// https://bitcointalk.org/index.php?topic=3238.msg45565#msg45565
+	// Next 6 constants are from Hal Finney's getrichcointalk.org post:
+	// https://getrichcointalk.org/index.php?topic=3238.msg45565#msg45565
 	// May he rest in peace.
 	//
 	// They have also been independently derived from the code in the

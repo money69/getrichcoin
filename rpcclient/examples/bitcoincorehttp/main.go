@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017 The btcsuite developers
+// Copyright (c) 2014-2017 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -7,17 +7,17 @@ package main
 import (
 	"log"
 
-	"github.com/btcsuite/btcd/rpcclient"
+	"github.com/grhsuite/grhd/rpcclient"
 )
 
 func main() {
-	// Connect to local bitcoin core RPC server using HTTP POST mode.
+	// Connect to local getrichcoin core RPC server using HTTP POST mode.
 	connCfg := &rpcclient.ConnConfig{
 		Host:         "localhost:8332",
 		User:         "yourrpcuser",
 		Pass:         "yourrpcpass",
-		HTTPPostMode: true, // Bitcoin core only supports HTTP POST mode
-		DisableTLS:   true, // Bitcoin core does not provide TLS by default
+		HTTPPostMode: true, // GetRichCoin core only supports HTTP POST mode
+		DisableTLS:   true, // GetRichCoin core does not provide TLS by default
 	}
 	// Notice the notification parameter is nil since notifications are
 	// not supported in HTTP POST mode.

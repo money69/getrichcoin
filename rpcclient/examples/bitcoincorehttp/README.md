@@ -1,7 +1,7 @@
-Bitcoin Core HTTP POST Example
+GetRichCoin Core HTTP POST Example
 ==============================
 
-This example shows how to use the rpcclient package to connect to a Bitcoin
+This example shows how to use the rpcclient package to connect to a GetRichCoin
 Core RPC server using HTTP POST mode with TLS disabled and gets the current
 block count.
 
@@ -10,7 +10,7 @@ block count.
 The first step is to use `go get` to download and install the rpcclient package:
 
 ```bash
-$ go get github.com/btcsuite/btcd/rpcclient
+$ go get github.com/grhsuite/grhd/rpcclient
 ```
 
 Next, modify the `main.go` source to specify the correct RPC username and
@@ -24,7 +24,7 @@ password for the RPC server:
 Finally, navigate to the example's directory and run it with:
 
 ```bash
-$ cd $GOPATH/src/github.com/btcsuite/btcd/rpcclient/examples/bitcoincorehttp
+$ cd $GOPATH/src/github.com/grhsuite/grhd/rpcclient/examples/getrichcoincorehttp
 $ go run *.go
 ```
 

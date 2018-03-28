@@ -1,15 +1,15 @@
-// Copyright (c) 2017 The btcsuite developers
+// Copyright (c) 2017 The grhsuite developers
 // Copyright (c) 2017 The Decred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcjson_test
+package grhjson_test
 
 import (
 	"encoding/json"
 	"testing"
 
-	"github.com/btcsuite/btcd/btcjson"
+	"github.com/grhsuite/grhd/grhjson"
 )
 
 // TestChainSvrWsResults ensures any results that have custom marshalling
@@ -24,7 +24,7 @@ func TestChainSvrWsResults(t *testing.T) {
 	}{
 		{
 			name: "RescannedBlock",
-			result: &btcjson.RescannedBlock{
+			result: &grhjson.RescannedBlock{
 				Hash:         "blockhash",
 				Transactions: []string{"serializedtx"},
 			},

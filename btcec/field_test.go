@@ -1,9 +1,9 @@
-// Copyright (c) 2013-2016 The btcsuite developers
+// Copyright (c) 2013-2016 The grhsuite developers
 // Copyright (c) 2013-2016 Dave Collins
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcec
+package grhec
 
 import (
 	"reflect"
@@ -125,7 +125,7 @@ func TestStringer(t *testing.T) {
 			"ffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
 			"00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
 		},
-		// 2^256-4294968273 (the btcec prime, so should result in 0)
+		// 2^256-4294968273 (the grhec prime, so should result in 0)
 		{
 			"fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f",
 			"0000000000000000000000000000000000000000000000000000000000000000",

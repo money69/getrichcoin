@@ -1,17 +1,17 @@
-package: github.com/btcsuite/btcd
+package: github.com/grhsuite/grhd
 import:
-- package: github.com/btcsuite/btclog
-- package: github.com/btcsuite/btcutil
+- package: github.com/grhsuite/grhlog
+- package: github.com/grhsuite/grhutil
   subpackages:
   - bloom
   - hdkeychain
-- package: github.com/btcsuite/go-socks
+- package: github.com/grhsuite/go-socks
   subpackages:
   - socks
 - package: golang.org/x/crypto
   subpackages:
   - ripemd160
-- package: github.com/btcsuite/goleveldb
+- package: github.com/grhsuite/goleveldb
   subpackages:
   - leveldb
   - leveldb/comparer
@@ -20,8 +20,8 @@ import:
   - leveldb/iterator
   - leveldb/opt
   - leveldb/util
-- package: github.com/btcsuite/websocket
-- package: github.com/btcsuite/winsvc
+- package: github.com/grhsuite/websocket
+- package: github.com/grhsuite/winsvc
   subpackages:
   - eventlog
   - mgr

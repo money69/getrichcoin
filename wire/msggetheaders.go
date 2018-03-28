@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2016 The btcsuite developers
+// Copyright (c) 2013-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -8,10 +8,10 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
+	"github.com/grhsuite/grhd/chaincfg/chainhash"
 )
 
-// MsgGetHeaders implements the Message interface and represents a bitcoin
+// MsgGetHeaders implements the Message interface and represents a getrichcoin
 // getheaders message.  It is used to request a list of block headers for
 // blocks starting after the last known hash in the slice of block locator
 // hashes.  The list is returned via a headers message (MsgHeaders) and is
@@ -45,7 +45,7 @@ func (msg *MsgGetHeaders) AddBlockLocatorHash(hash *chainhash.Hash) error {
 	return nil
 }
 
-// BtcDecode decodes r using the bitcoin protocol encoding into the receiver.
+// BtcDecode decodes r using the getrichcoin protocol encoding into the receiver.
 // This is part of the Message interface implementation.
 func (msg *MsgGetHeaders) BtcDecode(r io.Reader, pver uint32, enc MessageEncoding) error {
 	err := readElement(r, &msg.ProtocolVersion)
@@ -80,7 +80,7 @@ func (msg *MsgGetHeaders) BtcDecode(r io.Reader, pver uint32, enc MessageEncodin
 	return readElement(r, &msg.HashStop)
 }
 
-// BtcEncode encodes the receiver to w using the bitcoin protocol encoding.
+// BtcEncode encodes the receiver to w using the getrichcoin protocol encoding.
 // This is part of the Message interface implementation.
 func (msg *MsgGetHeaders) BtcEncode(w io.Writer, pver uint32, enc MessageEncoding) error {
 	// Limit to max block locator hashes per message.
@@ -126,7 +126,7 @@ func (msg *MsgGetHeaders) MaxPayloadLength(pver uint32) uint32 {
 		chainhash.HashSize) + chainhash.HashSize
 }
 
-// NewMsgGetHeaders returns a new bitcoin getheaders message that conforms to
+// NewMsgGetHeaders returns a new getrichcoin getheaders message that conforms to
 // the Message interface.  See MsgGetHeaders for details.
 func NewMsgGetHeaders() *MsgGetHeaders {
 	return &MsgGetHeaders{

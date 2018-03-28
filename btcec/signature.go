@@ -1,8 +1,8 @@
-// Copyright (c) 2013-2017 The btcsuite developers
+// Copyright (c) 2013-2017 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcec
+package grhec
 
 import (
 	"bytes"
@@ -39,7 +39,7 @@ var (
 
 // Serialize returns the ECDSA signature in the more strict DER format.  Note
 // that the serialized bytes returned do not include the appended hash type
-// used in Bitcoin signature scripts.
+// used in GetRichCoin signature scripts.
 //
 // encoding/asn1 is broken so we hand roll this output:
 //
@@ -274,8 +274,8 @@ func hashToInt(hash []byte, c elliptic.Curve) *big.Int {
 // SEC 1 Ver 2.0, page 47-48 (53 and 54 in the pdf). This performs the details
 // in the inner loop in Step 1. The counter provided is actually the j parameter
 // of the loop * 2 - on the first iteration of j we do the R case, else the -R
-// case in step 1.6. This counter is used in the bitcoin compressed signature
-// format and thus we match bitcoind's behaviour here.
+// case in step 1.6. This counter is used in the getrichcoin compressed signature
+// format and thus we match getrichcoind's behaviour here.
 func recoverKeyFromSignature(curve *KoblitzCurve, sig *Signature, msg []byte,
 	iter int, doChecks bool) (*PublicKey, error) {
 	// 1.1 x = (n * i) + r
@@ -349,7 +349,7 @@ func SignCompact(curve *KoblitzCurve, key *PrivateKey,
 		return nil, err
 	}
 
-	// bitcoind checks the bit length of R and S here. The ecdsa signature
+	// getrichcoind checks the bit length of R and S here. The ecdsa signature
 	// algorithm returns R and S mod N therefore they will be the bitsize of
 	// the curve, and thus correctly sized.
 	for i := 0; i < (curve.H+1)*2; i++ {

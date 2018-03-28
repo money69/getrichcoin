@@ -1,9 +1,9 @@
-// Copyright (c) 2015 The btcsuite developers
+// Copyright (c) 2015 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 /*
-Package btcjson provides primitives for working with the bitcoin JSON-RPC API.
+Package grhjson provides primitives for working with the getrichcoin JSON-RPC API.
 
 Overview
 
@@ -42,7 +42,7 @@ object, except they have the id field set to null.  Therefore, servers will
 ignore requests with the id field set to null, while clients can choose to
 consume or ignore them.
 
-Unfortunately, the original Bitcoin JSON-RPC API (and hence anything compatible
+Unfortunately, the original GetRichCoin JSON-RPC API (and hence anything compatible
 with it) doesn't always follow the spec and will sometimes return an error
 string in the result field with a null error for certain commands.  However,
 for the most part, the error field will be set as described on failure.
@@ -137,10 +137,10 @@ returned from the various functions available in this package.  They identify
 issues such as unsupported field types, attempts to register malformed commands,
 and attempting to create a new command with an improper number of parameters.
 The specific reason for the error can be detected by type asserting it to a
-*btcjson.Error and accessing the ErrorCode field.
+*grhjson.Error and accessing the ErrorCode field.
 
 The second category of errors (type RPCError), on the other hand, are useful for
 returning errors to RPC clients.  Consequently, they are used in the previously
 described Response type.
 */
-package btcjson
+package grhjson

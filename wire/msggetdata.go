@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2015 The btcsuite developers
+// Copyright (c) 2013-2015 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -9,7 +9,7 @@ import (
 	"io"
 )
 
-// MsgGetData implements the Message interface and represents a bitcoin
+// MsgGetData implements the Message interface and represents a getrichcoin
 // getdata message.  It is used to request data such as blocks and transactions
 // from another peer.  It should be used in response to the inv (MsgInv) message
 // to request the actual data referenced by each inventory vector the receiving
@@ -35,7 +35,7 @@ func (msg *MsgGetData) AddInvVect(iv *InvVect) error {
 	return nil
 }
 
-// BtcDecode decodes r using the bitcoin protocol encoding into the receiver.
+// BtcDecode decodes r using the getrichcoin protocol encoding into the receiver.
 // This is part of the Message interface implementation.
 func (msg *MsgGetData) BtcDecode(r io.Reader, pver uint32, enc MessageEncoding) error {
 	count, err := ReadVarInt(r, pver)
@@ -65,7 +65,7 @@ func (msg *MsgGetData) BtcDecode(r io.Reader, pver uint32, enc MessageEncoding) 
 	return nil
 }
 
-// BtcEncode encodes the receiver to w using the bitcoin protocol encoding.
+// BtcEncode encodes the receiver to w using the getrichcoin protocol encoding.
 // This is part of the Message interface implementation.
 func (msg *MsgGetData) BtcEncode(w io.Writer, pver uint32, enc MessageEncoding) error {
 	// Limit to max inventory vectors per message.
@@ -103,7 +103,7 @@ func (msg *MsgGetData) MaxPayloadLength(pver uint32) uint32 {
 	return MaxVarIntPayload + (MaxInvPerMsg * maxInvVectPayload)
 }
 
-// NewMsgGetData returns a new bitcoin getdata message that conforms to the
+// NewMsgGetData returns a new getrichcoin getdata message that conforms to the
 // Message interface.  See MsgGetData for details.
 func NewMsgGetData() *MsgGetData {
 	return &MsgGetData{
@@ -111,7 +111,7 @@ func NewMsgGetData() *MsgGetData {
 	}
 }
 
-// NewMsgGetDataSizeHint returns a new bitcoin getdata message that conforms to
+// NewMsgGetDataSizeHint returns a new getrichcoin getdata message that conforms to
 // the Message interface.  See MsgGetData for details.  This function differs
 // from NewMsgGetData in that it allows a default allocation size for the
 // backing array which houses the inventory vector list.  This allows callers

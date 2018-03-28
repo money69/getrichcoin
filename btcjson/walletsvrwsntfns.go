@@ -1,11 +1,11 @@
-// Copyright (c) 2014 The btcsuite developers
+// Copyright (c) 2014 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 // NOTE: This file is intended to house the RPC websocket notifications that are
 // supported by a wallet server.
 
-package btcjson
+package grhjson
 
 const (
 	// AccountBalanceNtfnMethod is the method used for account balance
@@ -14,7 +14,7 @@ const (
 
 	// BtcdConnectedNtfnMethod is the method used for notifications when
 	// a wallet server is connected to a chain server.
-	BtcdConnectedNtfnMethod = "btcdconnected"
+	BtcdConnectedNtfnMethod = "grhdconnected"
 
 	// WalletLockStateNtfnMethod is the method used to notify the lock state
 	// of a wallet has changed.
@@ -28,7 +28,7 @@ const (
 // AccountBalanceNtfn defines the accountbalance JSON-RPC notification.
 type AccountBalanceNtfn struct {
 	Account   string
-	Balance   float64 // In BTC
+	Balance   float64 // In GRH
 	Confirmed bool    // Whether Balance is confirmed or unconfirmed.
 }
 
@@ -42,13 +42,13 @@ func NewAccountBalanceNtfn(account string, balance float64, confirmed bool) *Acc
 	}
 }
 
-// BtcdConnectedNtfn defines the btcdconnected JSON-RPC notification.
+// BtcdConnectedNtfn defines the grhdconnected JSON-RPC notification.
 type BtcdConnectedNtfn struct {
 	Connected bool
 }
 
 // NewBtcdConnectedNtfn returns a new instance which can be used to issue a
-// btcdconnected JSON-RPC notification.
+// grhdconnected JSON-RPC notification.
 func NewBtcdConnectedNtfn(connected bool) *BtcdConnectedNtfn {
 	return &BtcdConnectedNtfn{
 		Connected: connected,

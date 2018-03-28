@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2016 The btcsuite developers
+// Copyright (c) 2015-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -8,8 +8,8 @@
 package database
 
 import (
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcutil"
+	"github.com/grhsuite/grhd/chaincfg/chainhash"
+	"github.com/grhsuite/grhutil"
 )
 
 // Cursor represents a cursor over key/value pairs and nested buckets of a
@@ -227,7 +227,7 @@ type Tx interface {
 	//   - ErrTxClosed if the transaction has already been closed
 	//
 	// Other errors are possible depending on the implementation.
-	StoreBlock(block *btcutil.Block) error
+	StoreBlock(block *grhutil.Block) error
 
 	// HasBlock returns whether or not a block with the given hash exists
 	// in the database.
@@ -337,7 +337,7 @@ type Tx interface {
 	// FetchBlockRegion returns the raw serialized bytes for the given
 	// block region.
 	//
-	// For example, it is possible to directly extract Bitcoin transactions
+	// For example, it is possible to directly extract GetRichCoin transactions
 	// and/or scripts from a block with this function.  Depending on the
 	// backend implementation, this can provide significant savings by
 	// avoiding the need to load entire blocks.
@@ -364,7 +364,7 @@ type Tx interface {
 	// FetchBlockRegions returns the raw serialized bytes for the given
 	// block regions.
 	//
-	// For example, it is possible to directly extract Bitcoin transactions
+	// For example, it is possible to directly extract GetRichCoin transactions
 	// and/or scripts from various blocks with this function.  Depending on
 	// the backend implementation, this can provide significant savings by
 	// avoiding the need to load entire blocks.
@@ -408,7 +408,7 @@ type Tx interface {
 	Rollback() error
 }
 
-// DB provides a generic interface that is used to store bitcoin blocks and
+// DB provides a generic interface that is used to store getrichcoin blocks and
 // related metadata.  This interface is intended to be agnostic to the actual
 // mechanism used for backend data storage.  The RegisterDriver function can be
 // used to add a new backend data storage method.

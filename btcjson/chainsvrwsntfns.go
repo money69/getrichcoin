@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2017 The btcsuite developers
+// Copyright (c) 2014-2017 The grhsuite developers
 // Copyright (c) 2015-2017 The Decred developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
@@ -6,7 +6,7 @@
 // NOTE: This file is intended to house the RPC websocket notifications that are
 // supported by a chain server.
 
-package btcjson
+package grhjson
 
 const (
 	// BlockConnectedNtfnMethod is the legacy, deprecated method used for

@@ -1,11 +1,11 @@
 connmgr
 =======
 
-[![Build Status](http://img.shields.io/travis/btcsuite/btcd.svg)](https://travis-ci.org/btcsuite/btcd)
+[![Build Status](http://img.shields.io/travis/grhsuite/grhd.svg)](https://travis-ci.org/grhsuite/grhd)
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/btcsuite/btcd/connmgr)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/grhsuite/grhd/connmgr)
 
-Package connmgr implements a generic Bitcoin network connection manager.
+Package connmgr implements a generic GetRichCoin network connection manager.
 
 ## Overview
 
@@ -29,7 +29,7 @@ In addition the connection manager provides the following utilities:
 ## Installation and Updating
 
 ```bash
-$ go get -u github.com/btcsuite/btcd/connmgr
+$ go get -u github.com/grhsuite/grhd/connmgr
 ```
 
 ## License

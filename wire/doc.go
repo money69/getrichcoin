@@ -1,42 +1,42 @@
-// Copyright (c) 2013-2016 The btcsuite developers
+// Copyright (c) 2013-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 /*
-Package wire implements the bitcoin wire protocol.
+Package wire implements the getrichcoin wire protocol.
 
-For the complete details of the bitcoin protocol, see the official wiki entry
-at https://en.bitcoin.it/wiki/Protocol_specification.  The following only serves
+For the complete details of the getrichcoin protocol, see the official wiki entry
+at https://en.getrichcoin.it/wiki/Protocol_specification.  The following only serves
 as a quick overview to provide information on how to use the package.
 
 At a high level, this package provides support for marshalling and unmarshalling
-supported bitcoin messages to and from the wire.  This package does not deal
+supported getrichcoin messages to and from the wire.  This package does not deal
 with the specifics of message handling such as what to do when a message is
 received.  This provides the caller with a high level of flexibility.
 
-Bitcoin Message Overview
+GetRichCoin Message Overview
 
-The bitcoin protocol consists of exchanging messages between peers.  Each
+The getrichcoin protocol consists of exchanging messages between peers.  Each
 message is preceded by a header which identifies information about it such as
-which bitcoin network it is a part of, its type, how big it is, and a checksum
+which getrichcoin network it is a part of, its type, how big it is, and a checksum
 to verify validity.  All encoding and decoding of message headers is handled by
 this package.
 
-To accomplish this, there is a generic interface for bitcoin messages named
+To accomplish this, there is a generic interface for getrichcoin messages named
 Message which allows messages of any type to be read, written, or passed around
 through channels, functions, etc.  In addition, concrete implementations of most
-of the currently supported bitcoin messages are provided.  For these supported
+of the currently supported getrichcoin messages are provided.  For these supported
 messages, all of the details of marshalling and unmarshalling to and from the
-wire using bitcoin encoding are handled so the caller doesn't have to concern
+wire using getrichcoin encoding are handled so the caller doesn't have to concern
 themselves with the specifics.
 
 Message Interaction
 
-The following provides a quick summary of how the bitcoin messages are intended
+The following provides a quick summary of how the getrichcoin messages are intended
 to interact with one another.  As stated above, these interactions are not
 directly handled by this package.  For more in-depth details about the
-appropriate interactions, see the official bitcoin protocol wiki entry at
-https://en.bitcoin.it/wiki/Protocol_specification.
+appropriate interactions, see the official getrichcoin protocol wiki entry at
+https://en.getrichcoin.it/wiki/Protocol_specification.
 
 The initial handshake consists of two peers sending each other a version message
 (MsgVersion) followed by responding with a verack message (MsgVerAck).  Both
@@ -65,7 +65,7 @@ interactions in no particular order.
 Common Parameters
 
 There are several common parameters that arise when using this package to read
-and write bitcoin messages.  The following sections provide a quick overview of
+and write getrichcoin messages.  The following sections provide a quick overview of
 these parameters so the next sections can build on them.
 
 Protocol Version
@@ -77,10 +77,10 @@ latest protocol version this package supports and is typically the value to use
 for all outbound connections before a potentially lower protocol version is
 negotiated.
 
-Bitcoin Network
+GetRichCoin Network
 
-The bitcoin network is a magic number which is used to identify the start of a
-message and which bitcoin network the message applies to.  This package provides
+The getrichcoin network is a magic number which is used to identify the start of a
+message and which getrichcoin network the message applies to.  This package provides
 the following constants:
 
 	wire.MainNet
@@ -90,8 +90,8 @@ the following constants:
 
 Determining Message Type
 
-As discussed in the bitcoin message overview section, this package reads
-and writes bitcoin messages using a generic interface named Message.  In
+As discussed in the getrichcoin message overview section, this package reads
+and writes getrichcoin messages using a generic interface named Message.  In
 order to determine the actual concrete type of the message, use a type
 switch or type assertion.  An example of a type switch follows:
 
@@ -108,33 +108,33 @@ switch or type assertion.  An example of a type switch follows:
 
 Reading Messages
 
-In order to unmarshall bitcoin messages from the wire, use the ReadMessage
+In order to unmarshall getrichcoin messages from the wire, use the ReadMessage
 function.  It accepts any io.Reader, but typically this will be a net.Conn to
-a remote node running a bitcoin peer.  Example syntax is:
+a remote node running a getrichcoin peer.  Example syntax is:
 
-	// Reads and validates the next bitcoin message from conn using the
-	// protocol version pver and the bitcoin network btcnet.  The returns
+	// Reads and validates the next getrichcoin message from conn using the
+	// protocol version pver and the getrichcoin network grhnet.  The returns
 	// are a wire.Message, a []byte which contains the unmarshalled
 	// raw payload, and a possible error.
-	msg, rawPayload, err := wire.ReadMessage(conn, pver, btcnet)
+	msg, rawPayload, err := wire.ReadMessage(conn, pver, grhnet)
 	if err != nil {
 		// Log and handle the error
 	}
 
 Writing Messages
 
-In order to marshall bitcoin messages to the wire, use the WriteMessage
+In order to marshall getrichcoin messages to the wire, use the WriteMessage
 function.  It accepts any io.Writer, but typically this will be a net.Conn to
-a remote node running a bitcoin peer.  Example syntax to request addresses
+a remote node running a getrichcoin peer.  Example syntax to request addresses
 from a remote peer is:
 
-	// Create a new getaddr bitcoin message.
+	// Create a new getaddr getrichcoin message.
 	msg := wire.NewMsgGetAddr()
 
-	// Writes a bitcoin message msg to conn using the protocol version
-	// pver, and the bitcoin network btcnet.  The return is a possible
+	// Writes a getrichcoin message msg to conn using the protocol version
+	// pver, and the getrichcoin network grhnet.  The return is a possible
 	// error.
-	err := wire.WriteMessage(conn, msg, pver, btcnet)
+	err := wire.WriteMessage(conn, msg, pver, grhnet)
 	if err != nil {
 		// Log and handle the error
 	}
@@ -147,16 +147,16 @@ io.ErrShortWrite, or of type wire.MessageError.  This allows the caller to
 differentiate between general IO errors and malformed messages through type
 assertions.
 
-Bitcoin Improvement Proposals
+GetRichCoin Improvement Proposals
 
 This package includes spec changes outlined by the following BIPs:
 
-	BIP0014 (https://github.com/bitcoin/bips/blob/master/bip-0014.mediawiki)
-	BIP0031 (https://github.com/bitcoin/bips/blob/master/bip-0031.mediawiki)
-	BIP0035 (https://github.com/bitcoin/bips/blob/master/bip-0035.mediawiki)
-	BIP0037 (https://github.com/bitcoin/bips/blob/master/bip-0037.mediawiki)
-	BIP0111	(https://github.com/bitcoin/bips/blob/master/bip-0111.mediawiki)
-	BIP0130 (https://github.com/bitcoin/bips/blob/master/bip-0130.mediawiki)
-	BIP0133 (https://github.com/bitcoin/bips/blob/master/bip-0133.mediawiki)
+	BIP0014 (https://github.com/getrichcoin/bips/blob/master/bip-0014.mediawiki)
+	BIP0031 (https://github.com/getrichcoin/bips/blob/master/bip-0031.mediawiki)
+	BIP0035 (https://github.com/getrichcoin/bips/blob/master/bip-0035.mediawiki)
+	BIP0037 (https://github.com/getrichcoin/bips/blob/master/bip-0037.mediawiki)
+	BIP0111	(https://github.com/getrichcoin/bips/blob/master/bip-0111.mediawiki)
+	BIP0130 (https://github.com/getrichcoin/bips/blob/master/bip-0130.mediawiki)
+	BIP0133 (https://github.com/getrichcoin/bips/blob/master/bip-0133.mediawiki)
 */
 package wire

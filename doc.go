@@ -1,24 +1,24 @@
-// Copyright (c) 2013-2017 The btcsuite developers
+// Copyright (c) 2013-2017 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 /*
-btcd is a full-node bitcoin implementation written in Go.
+grhd is a full-node getrichcoin implementation written in Go.
 
-The default options are sane for most users.  This means btcd will work 'out of
+The default options are sane for most users.  This means grhd will work 'out of
 the box' for most users.  However, there are also a wide variety of flags that
 can be used to control it.
 
 The following section provides a usage overview which enumerates the flags.  An
 interesting point to note is that the long form of all of these options
 (except -C) can be specified in a configuration file that is automatically
-parsed when btcd starts up.  By default, the configuration file is located at
-~/.btcd/btcd.conf on POSIX-style operating systems and %LOCALAPPDATA%\btcd\btcd.conf
+parsed when grhd starts up.  By default, the configuration file is located at
+~/.grhd/grhd.conf on POSIX-style operating systems and %LOCALAPPDATA%\grhd\grhd.conf
 on Windows.  The -C (--configfile) flag, as shown below, can be used to override
 this location.
 
 Usage:
-  btcd [OPTIONS]
+  grhd [OPTIONS]
 
 Application Options:
   -V, --version             Display version information and exit
@@ -52,7 +52,7 @@ Application Options:
       --rpcmaxclients=      Max number of RPC clients for standard connections
                             (10)
       --rpcmaxwebsockets=   Max number of RPC websocket connections (25)
-      --rpcquirks           Mirror some JSON-RPC quirks of Bitcoin Core -- NOTE:
+      --rpcquirks           Mirror some JSON-RPC quirks of GetRichCoin Core -- NOTE:
                             Discouraged unless interoperability issues need to
                             be worked around
       --norpc               Disable built-in RPC server -- NOTE: The RPC server
@@ -91,7 +91,7 @@ Application Options:
                             the log level for individual subsystems -- Use show
                             to list available subsystems (info)
       --upnp                Use UPnP to map our listening port outside of NAT
-      --minrelaytxfee=      The minimum transaction fee in BTC/kB to be
+      --minrelaytxfee=      The minimum transaction fee in GRH/kB to be
                             considered a non-zero fee.
       --limitfreerelay=     Limit relay of transactions with no transaction fee
                             to the given amount in thousands of bytes per
@@ -100,7 +100,7 @@ Application Options:
                             high priority for relaying
       --maxorphantx=        Max number of orphan transactions to keep in memory
                             (100)
-      --generate            Generate (mine) bitcoins using the CPU
+      --generate            Generate (mine) getrichcoins using the CPU
       --miningaddr=         Add the specified payment address to the list of
                             addresses to use for generated blocks -- At least
                             one address is required if the generate option is

@@ -1,4 +1,4 @@
-// Copyright (c) 2013-2016 The btcsuite developers
+// Copyright (c) 2013-2016 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
@@ -17,11 +17,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/btcsuite/btcd/blockchain"
-	"github.com/btcsuite/btcd/chaincfg"
-	"github.com/btcsuite/btcd/chaincfg/chainhash"
-	"github.com/btcsuite/btcd/wire"
-	"github.com/btcsuite/go-socks/socks"
+	"github.com/grhsuite/grhd/blockchain"
+	"github.com/grhsuite/grhd/chaincfg"
+	"github.com/grhsuite/grhd/chaincfg/chainhash"
+	"github.com/grhsuite/grhd/wire"
+	"github.com/grhsuite/go-socks/socks"
 	"github.com/davecgh/go-spew/spew"
 )
 
@@ -99,83 +99,83 @@ var (
 // handler goroutine blocks until the callback has completed.  Doing so will
 // result in a deadlock.
 type MessageListeners struct {
-	// OnGetAddr is invoked when a peer receives a getaddr bitcoin message.
+	// OnGetAddr is invoked when a peer receives a getaddr getrichcoin message.
 	OnGetAddr func(p *Peer, msg *wire.MsgGetAddr)
 
-	// OnAddr is invoked when a peer receives an addr bitcoin message.
+	// OnAddr is invoked when a peer receives an addr getrichcoin message.
 	OnAddr func(p *Peer, msg *wire.MsgAddr)
 
-	// OnPing is invoked when a peer receives a ping bitcoin message.
+	// OnPing is invoked when a peer receives a ping getrichcoin message.
 	OnPing func(p *Peer, msg *wire.MsgPing)
 
-	// OnPong is invoked when a peer receives a pong bitcoin message.
+	// OnPong is invoked when a peer receives a pong getrichcoin message.
 	OnPong func(p *Peer, msg *wire.MsgPong)
 
-	// OnAlert is invoked when a peer receives an alert bitcoin message.
+	// OnAlert is invoked when a peer receives an alert getrichcoin message.
 	OnAlert func(p *Peer, msg *wire.MsgAlert)
 
-	// OnMemPool is invoked when a peer receives a mempool bitcoin message.
+	// OnMemPool is invoked when a peer receives a mempool getrichcoin message.
 	OnMemPool func(p *Peer, msg *wire.MsgMemPool)
 
-	// OnTx is invoked when a peer receives a tx bitcoin message.
+	// OnTx is invoked when a peer receives a tx getrichcoin message.
 	OnTx func(p *Peer, msg *wire.MsgTx)
 
-	// OnBlock is invoked when a peer receives a block bitcoin message.
+	// OnBlock is invoked when a peer receives a block getrichcoin message.
 	OnBlock func(p *Peer, msg *wire.MsgBlock, buf []byte)
 
-	// OnInv is invoked when a peer receives an inv bitcoin message.
+	// OnInv is invoked when a peer receives an inv getrichcoin message.
 	OnInv func(p *Peer, msg *wire.MsgInv)
 
-	// OnHeaders is invoked when a peer receives a headers bitcoin message.
+	// OnHeaders is invoked when a peer receives a headers getrichcoin message.
 	OnHeaders func(p *Peer, msg *wire.MsgHeaders)
 
-	// OnNotFound is invoked when a peer receives a notfound bitcoin
+	// OnNotFound is invoked when a peer receives a notfound getrichcoin
 	// message.
 	OnNotFound func(p *Peer, msg *wire.MsgNotFound)
 
-	// OnGetData is invoked when a peer receives a getdata bitcoin message.
+	// OnGetData is invoked when a peer receives a getdata getrichcoin message.
 	OnGetData func(p *Peer, msg *wire.MsgGetData)
 
-	// OnGetBlocks is invoked when a peer receives a getblocks bitcoin
+	// OnGetBlocks is invoked when a peer receives a getblocks getrichcoin
 	// message.
 	OnGetBlocks func(p *Peer, msg *wire.MsgGetBlocks)
 
-	// OnGetHeaders is invoked when a peer receives a getheaders bitcoin
+	// OnGetHeaders is invoked when a peer receives a getheaders getrichcoin
 	// message.
 	OnGetHeaders func(p *Peer, msg *wire.MsgGetHeaders)
 
-	// OnFeeFilter is invoked when a peer receives a feefilter bitcoin message.
+	// OnFeeFilter is invoked when a peer receives a feefilter getrichcoin message.
 	OnFeeFilter func(p *Peer, msg *wire.MsgFeeFilter)
 
-	// OnFilterAdd is invoked when a peer receives a filteradd bitcoin message.
+	// OnFilterAdd is invoked when a peer receives a filteradd getrichcoin message.
 	OnFilterAdd func(p *Peer, msg *wire.MsgFilterAdd)
 
-	// OnFilterClear is invoked when a peer receives a filterclear bitcoin
+	// OnFilterClear is invoked when a peer receives a filterclear getrichcoin
 	// message.
 	OnFilterClear func(p *Peer, msg *wire.MsgFilterClear)
 
-	// OnFilterLoad is invoked when a peer receives a filterload bitcoin
+	// OnFilterLoad is invoked when a peer receives a filterload getrichcoin
 	// message.
 	OnFilterLoad func(p *Peer, msg *wire.MsgFilterLoad)
 
-	// OnMerkleBlock  is invoked when a peer receives a merkleblock bitcoin
+	// OnMerkleBlock  is invoked when a peer receives a merkleblock getrichcoin
 	// message.
 	OnMerkleBlock func(p *Peer, msg *wire.MsgMerkleBlock)
 
-	// OnVersion is invoked when a peer receives a version bitcoin message.
+	// OnVersion is invoked when a peer receives a version getrichcoin message.
 	OnVersion func(p *Peer, msg *wire.MsgVersion)
 
-	// OnVerAck is invoked when a peer receives a verack bitcoin message.
+	// OnVerAck is invoked when a peer receives a verack getrichcoin message.
 	OnVerAck func(p *Peer, msg *wire.MsgVerAck)
 
-	// OnReject is invoked when a peer receives a reject bitcoin message.
+	// OnReject is invoked when a peer receives a reject getrichcoin message.
 	OnReject func(p *Peer, msg *wire.MsgReject)
 
-	// OnSendHeaders is invoked when a peer receives a sendheaders bitcoin
+	// OnSendHeaders is invoked when a peer receives a sendheaders getrichcoin
 	// message.
 	OnSendHeaders func(p *Peer, msg *wire.MsgSendHeaders)
 
-	// OnRead is invoked when a peer receives a bitcoin message.  It
+	// OnRead is invoked when a peer receives a getrichcoin message.  It
 	// consists of the number of bytes read, the message, and whether or not
 	// an error in the read occurred.  Typically, callers will opt to use
 	// the callbacks for the specific message types, however this can be
@@ -184,7 +184,7 @@ type MessageListeners struct {
 	// not directly provide a callback.
 	OnRead func(p *Peer, bytesRead int, msg wire.Message, err error)
 
-	// OnWrite is invoked when we write a bitcoin message to a peer.  It
+	// OnWrite is invoked when we write a getrichcoin message to a peer.  It
 	// consists of the number of bytes written, the message, and whether or
 	// not an error in the write occurred.  This can be useful for
 	// circumstances such as keeping track of server-wide byte counts.
@@ -257,7 +257,7 @@ func minUint32(a, b uint32) uint32 {
 }
 
 // newNetAddress attempts to extract the IP address and port from the passed
-// net.Addr interface and create a bitcoin NetAddress structure using that
+// net.Addr interface and create a getrichcoin NetAddress structure using that
 // information.
 func newNetAddress(addr net.Addr, services wire.ServiceFlag) (*wire.NetAddress, error) {
 	// addr will be a net.TCPAddr when not using a proxy.
@@ -374,13 +374,13 @@ type HostToNetAddrFunc func(host string, port uint16,
 // It acts as the traffic cop between the external world and the actual
 // goroutine which writes to the network socket.
 
-// Peer provides a basic concurrent safe bitcoin peer for handling bitcoin
+// Peer provides a basic concurrent safe getrichcoin peer for handling getrichcoin
 // communications via the peer-to-peer protocol.  It provides full duplex
 // reading and writing, automatic handling of the initial handshake process,
 // querying of usage statistics and other information about the remote peer such
 // as its address, user agent, and protocol version, output message queuing,
 // inventory trickling, and the ability to dynamically register and unregister
-// callbacks for handling bitcoin protocol messages.
+// callbacks for handling getrichcoin protocol messages.
 //
 // Outbound messages are typically queued via QueueMessage or QueueInventory.
 // QueueMessage is intended for all messages, including responses to data such
@@ -827,9 +827,9 @@ func (p *Peer) localVersionMsg() (*wire.MsgVersion, error) {
 	msg.AddUserAgent(p.cfg.UserAgentName, p.cfg.UserAgentVersion,
 		p.cfg.UserAgentComments...)
 
-	// XXX: bitcoind appears to always enable the full node services flag
+	// XXX: getrichcoind appears to always enable the full node services flag
 	// of the remote peer netaddress field in the version message regardless
-	// of whether it knows it supports it or not.  Also, bitcoind sets
+	// of whether it knows it supports it or not.  Also, getrichcoind sets
 	// the services field of the local peer to 0 regardless of support.
 	//
 	// Realistically, this should be set as follows:
@@ -1018,7 +1018,7 @@ func (p *Peer) PushRejectMsg(command string, code wire.RejectCode, reason string
 	<-doneChan
 }
 
-// handleRemoteVersionMsg is invoked when a version bitcoin message is received
+// handleRemoteVersionMsg is invoked when a version getrichcoin message is received
 // from the remote peer.  It will return an error if the remote peer's version
 // is not compatible with ours.
 func (p *Peer) handleRemoteVersionMsg(msg *wire.MsgVersion) error {
@@ -1084,7 +1084,7 @@ func (p *Peer) handleRemoteVersionMsg(msg *wire.MsgVersion) error {
 	return nil
 }
 
-// handlePingMsg is invoked when a peer receives a ping bitcoin message.  For
+// handlePingMsg is invoked when a peer receives a ping getrichcoin message.  For
 // recent clients (protocol version > BIP0031Version), it replies with a pong
 // message.  For older clients, it does nothing and anything other than failure
 // is considered a successful ping.
@@ -1096,7 +1096,7 @@ func (p *Peer) handlePingMsg(msg *wire.MsgPing) {
 	}
 }
 
-// handlePongMsg is invoked when a peer receives a pong bitcoin message.  It
+// handlePongMsg is invoked when a peer receives a pong getrichcoin message.  It
 // updates the ping statistics as required for recent clients (protocol
 // version > BIP0031Version).  There is no effect for older clients or when a
 // ping was not previously sent.
@@ -1119,7 +1119,7 @@ func (p *Peer) handlePongMsg(msg *wire.MsgPong) {
 	}
 }
 
-// readMessage reads the next bitcoin message from the peer with logging.
+// readMessage reads the next getrichcoin message from the peer with logging.
 func (p *Peer) readMessage(encoding wire.MessageEncoding) (wire.Message, []byte, error) {
 	n, msg, buf, err := wire.ReadMessageWithEncodingN(p.conn,
 		p.ProtocolVersion(), p.cfg.ChainParams.Net, encoding)
@@ -1152,7 +1152,7 @@ func (p *Peer) readMessage(encoding wire.MessageEncoding) (wire.Message, []byte,
 	return msg, buf, nil
 }
 
-// writeMessage sends a bitcoin message to the peer with logging.
+// writeMessage sends a getrichcoin message to the peer with logging.
 func (p *Peer) writeMessage(msg wire.Message, enc wire.MessageEncoding) error {
 	// Don't do anything if we're disconnecting.
 	if atomic.LoadInt32(&p.disconnect) != 0 {
@@ -1880,14 +1880,14 @@ out:
 	}
 }
 
-// QueueMessage adds the passed bitcoin message to the peer send queue.
+// QueueMessage adds the passed getrichcoin message to the peer send queue.
 //
 // This function is safe for concurrent access.
 func (p *Peer) QueueMessage(msg wire.Message, doneChan chan<- struct{}) {
 	p.QueueMessageWithEncoding(msg, doneChan, wire.BaseEncoding)
 }
 
-// QueueMessageWithEncoding adds the passed bitcoin message to the peer send
+// QueueMessageWithEncoding adds the passed getrichcoin message to the peer send
 // queue. This function is identical to QueueMessage, however it allows the
 // caller to specify the wire encoding type that should be used when
 // encoding/decoding blocks and transactions.
@@ -2096,7 +2096,7 @@ func (p *Peer) negotiateOutboundProtocol() error {
 	return p.readRemoteVersionMsg()
 }
 
-// newPeerBase returns a new base bitcoin peer based on the inbound flag.  This
+// newPeerBase returns a new base getrichcoin peer based on the inbound flag.  This
 // is used by the NewInboundPeer and NewOutboundPeer functions to perform base
 // setup needed by both types of peers.
 func newPeerBase(origCfg *Config, inbound bool) *Peer {
@@ -2132,13 +2132,13 @@ func newPeerBase(origCfg *Config, inbound bool) *Peer {
 	return &p
 }
 
-// NewInboundPeer returns a new inbound bitcoin peer. Use Start to begin
+// NewInboundPeer returns a new inbound getrichcoin peer. Use Start to begin
 // processing incoming and outgoing messages.
 func NewInboundPeer(cfg *Config) *Peer {
 	return newPeerBase(cfg, true)
 }
 
-// NewOutboundPeer returns a new outbound bitcoin peer.
+// NewOutboundPeer returns a new outbound getrichcoin peer.
 func NewOutboundPeer(cfg *Config, addr string) (*Peer, error) {
 	p := newPeerBase(cfg, false)
 	p.addr = addr

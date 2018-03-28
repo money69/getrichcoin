@@ -1,14 +1,14 @@
-// Copyright (c) 2013-2014 The btcsuite developers
+// Copyright (c) 2013-2014 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
 /*
-Package blockchain implements bitcoin block handling and chain selection rules.
+Package blockchain implements getrichcoin block handling and chain selection rules.
 
-The bitcoin block handling and chain selection rules are an integral, and quite
-likely the most important, part of bitcoin.  Unfortunately, at the time of
+The getrichcoin block handling and chain selection rules are an integral, and quite
+likely the most important, part of getrichcoin.  Unfortunately, at the time of
 this writing, these rules are also largely undocumented and had to be
-ascertained from the bitcoind source code.  At its core, bitcoin is a
+ascertained from the getrichcoind source code.  At its core, getrichcoin is a
 distributed consensus of which blocks are valid and which ones will comprise the
 main block chain (public ledger) that ultimately determines accepted
 transactions, so it is extremely important that fully validating nodes agree on
@@ -20,13 +20,13 @@ functionality such as rejecting duplicate blocks, ensuring blocks and
 transactions follow all rules, orphan handling, and best chain selection along
 with reorganization.
 
-Since this package does not deal with other bitcoin specifics such as network
+Since this package does not deal with other getrichcoin specifics such as network
 communication or wallets, it provides a notification system which gives the
 caller a high level of flexibility in how they want to react to certain events
 such as orphan blocks which need their parents requested and newly connected
 main chain blocks which might result in wallet updates.
 
-Bitcoin Chain Processing Overview
+GetRichCoin Chain Processing Overview
 
 Before a block is allowed into the block chain, it must go through an intensive
 series of validation rules.  The following list serves as a general outline of
@@ -70,12 +70,12 @@ violations through type assertions.  In addition, callers can programmatically
 determine the specific rule violation by examining the ErrorCode field of the
 type asserted blockchain.RuleError.
 
-Bitcoin Improvement Proposals
+GetRichCoin Improvement Proposals
 
 This package includes spec changes outlined by the following BIPs:
 
-		BIP0016 (https://en.bitcoin.it/wiki/BIP_0016)
-		BIP0030 (https://en.bitcoin.it/wiki/BIP_0030)
-		BIP0034 (https://en.bitcoin.it/wiki/BIP_0034)
+		BIP0016 (https://en.getrichcoin.it/wiki/BIP_0016)
+		BIP0030 (https://en.getrichcoin.it/wiki/BIP_0030)
+		BIP0034 (https://en.getrichcoin.it/wiki/BIP_0034)
 */
 package blockchain

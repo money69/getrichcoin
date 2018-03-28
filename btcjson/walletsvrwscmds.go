@@ -1,8 +1,8 @@
-// Copyright (c) 2014 The btcsuite developers
+// Copyright (c) 2014 The grhsuite developers
 // Use of this source code is governed by an ISC
 // license that can be found in the LICENSE file.
 
-package btcjson
+package grhjson
 
 // NOTE: This file is intended to house the RPC commands that are supported by
 // a wallet server, but are only available via websockets.
